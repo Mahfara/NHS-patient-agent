@@ -1,3 +1,4 @@
+"""
 NHS Emergency Department Patient AI Agent
 ==========================================
 A personal AI assistant for ED patients that:
@@ -33,23 +34,23 @@ st.set_page_config(
 st.markdown("""
 <style>
     .nhs-header {
-        background: linear-gradient(135deg, #005EB8 0%, #003087 100%);
+        background: linear-gradient(135deg, #005EB8, #003087);
         padding: 24px 32px; border-radius: 16px;
         margin-bottom: 24px; color: white;
     }
     .chat-user {
         background: #005EB8; color: white; padding: 14px 18px;
-        border-radius: 18px 18px 4px 18px; margin: 8px 0 8px 15%;
+        border-radius: 18px 18px 4px 18px; margin: 8px 0 8px 60px;
         font-size: 15px; line-height: 1.6;
     }
     .chat-agent {
         background: #f0f4ff; color: #1a1a2e; padding: 14px 18px;
-        border-radius: 18px 18px 18px 4px; margin: 8px 15% 8px 0;
+        border-radius: 18px 18px 18px 4px; margin: 8px 60px 8px 0;
         font-size: 15px; line-height: 1.6; border-left: 4px solid #005EB8;
     }
     .chat-system {
         background: #fff8e1; color: #5d4037; padding: 10px 16px;
-        border-radius: 10px; margin: 4px 10%; font-size: 13px; text-align: center;
+        border-radius: 10px; margin: 4px 40px; font-size: 13px; text-align: center;
     }
     .wait-card {
         background: white; border-radius: 16px; padding: 24px;
@@ -320,10 +321,10 @@ def agent_response(msg, patient):
 
     if any(w in m for w in ['bring','need','documents','id','what should i']):
         return ("**Useful to have with you:**\n\n"
-                "NHS number (on your NHS app or GP letters)\n"
-                "List of current medications (names + doses)\n"
-                "Any relevant specialist or GP letters\n"
-                "Next of kin contact details\n\n"
+                "✅ NHS number (on your NHS app or GP letters)\n"
+                "✅ List of current medications (names + doses)\n"
+                "✅ Any relevant specialist or GP letters\n"
+                "✅ Next of kin contact details\n\n"
                 "You do **not** need any documents to receive emergency treatment.")
 
     if any(w in m for w in ['hello','hi','hey','help','start']):
@@ -381,7 +382,7 @@ with left:
     # Chat display
     if not st.session_state.messages:
         st.markdown("""<div class="chat-agent">
-             Hello! I'm your NHS ED Patient Assistant.<br><br>
+            👋 Hello! I'm your NHS ED Patient Assistant.<br><br>
             I can <b>estimate your wait time</b>, suggest the <b>best care pathway</b>,
             and answer any questions about your visit.<br><br>
             Fill in your details on the right, or just ask me a question to get started.
@@ -389,9 +390,9 @@ with left:
     else:
         for m in st.session_state.messages:
             if m['role'] == 'user':
-                st.markdown(f'<div class="chat-user"> {m["content"]}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="chat-user">👤 {m["content"]}</div>', unsafe_allow_html=True)
             elif m['role'] == 'agent':
-                st.markdown(f'<div class="chat-agent"> {m["content"]}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="chat-agent">🤖 {m["content"]}</div>', unsafe_allow_html=True)
             else:
                 st.markdown(f'<div class="chat-system">ℹ️ {m["content"]}</div>', unsafe_allow_html=True)
 
@@ -600,4 +601,3 @@ st.markdown("""<div style="text-align:center;color:#888;font-size:12px">
     MSc Big Data & Data Science Technology | Northumbria University London | 2024-25<br>
     ⚠️ Not a substitute for clinical advice. Always follow guidance from NHS staff.
 </div>""", unsafe_allow_html=True)
-
