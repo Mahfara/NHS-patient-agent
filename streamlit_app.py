@@ -24,8 +24,8 @@ from datetime import datetime, timedelta
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="NHS ED Patient Assistant",
-    page_icon="🏥",
+    page_title="NHS ED AI Assistant",   # ← browser tab name
+    page_icon="logo.png",               # ← your logo file as favicon
     layout="wide",
     initial_sidebar_state="collapsed"
 )
