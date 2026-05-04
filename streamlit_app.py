@@ -21,6 +21,7 @@ import numpy as np
 import pickle
 import json
 from datetime import datetime, timedelta
+import base64
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -82,6 +83,16 @@ try:
 except FileNotFoundError as e:
     st.error(f"Model files not found: {e}\n\nEnsure lgb_model.pkl, xgb_model.pkl, feature_meta.json are in the same folder.")
     st.stop()
+
+# ── Logo loader ────────────────────────────────────────────────────────────────
+def get_logo_base64(path):
+    try:
+        with open(path, "rb") as f:
+            return base64.b64encode(f.read()).decode()
+    except FileNotFoundError:
+        return None
+
+logo_b64 = get_logo_base64("logo.png")
 
 # ── Session state ──────────────────────────────────────────────────────────────
 for key, default in [
