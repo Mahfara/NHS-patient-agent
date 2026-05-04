@@ -1,0 +1,105 @@
+{
+  "feature_names": [
+    "hour_of_day",
+    "day_of_week",
+    "month",
+    "is_weekend",
+    "patient_age",
+    "patient_sex",
+    "imd_quintile",
+    "comorbidity_count",
+    "previous_ed_visits_12m",
+    "re_attendance_72h",
+    "arrival_mode",
+    "pre_alert_received",
+    "chief_complaint",
+    "triage_category",
+    "news2_score",
+    "nhs_trust",
+    "ics_region",
+    "trust_type",
+    "bed_occupancy_pct",
+    "beds_available",
+    "staff_ratio",
+    "daily_ed_attendance",
+    "shift_total_arrivals",
+    "shift_ambulance_arrivals",
+    "ambulance_handover_delay_min",
+    "handover_breach_gt30min",
+    "wait_time_to_assessment_min",
+    "ed_los_min",
+    "boarding_delay_min",
+    "queue_length_estimate",
+    "capacity_pressure_index",
+    "patient_acuity_score",
+    "wait_equity_delta_min",
+    "deteriorated_in_ed",
+    "admitted",
+    "occ_x_triage",
+    "wait_per_staff",
+    "acuity_x_cpi",
+    "los_over_threshold",
+    "night_high_occ",
+    "ambul_handover_stress",
+    "is_winter",
+    "boarding_per_los"
+  ],
+  "state_cols": [
+    "bed_occupancy_pct",
+    "beds_available",
+    "staff_ratio",
+    "queue_length_estimate",
+    "capacity_pressure_index",
+    "hour_of_day",
+    "shift_total_arrivals",
+    "patient_acuity_score"
+  ],
+  "rl_actions": {
+    "0": {
+      "name": "Maintain Current Levels",
+      "desc": "System stable \u2014 no additional resource deployment needed",
+      "cost": "\u00a30",
+      "icon": "\u2705"
+    },
+    "1": {
+      "name": "Activate Surge Bed Protocol",
+      "desc": "Open additional surge beds (+5 capacity). Best when occupancy >96%",
+      "cost": "~\u00a3450/hr",
+      "icon": "\ud83d\udecf\ufe0f"
+    },
+    "2": {
+      "name": "Call Additional Nursing Staff",
+      "desc": "Request bank/agency nurses. Best when queue length >35",
+      "cost": "~\u00a3320/hr",
+      "icon": "\ud83d\udc69\u200d\u2695\ufe0f"
+    },
+    "3": {
+      "name": "Implement Triage Fast-Track",
+      "desc": "Expedite lower-acuity patients via fast-track. Best when moderate pressure",
+      "cost": "~\u00a3180/hr",
+      "icon": "\u26a1"
+    }
+  },
+  "breach_rate_nhs": 0.261,
+  "model_accuracy": {
+    "LightGBM": 0.9008,
+    "XGBoost": 0.899
+  },
+  "model_auc": {
+    "LightGBM": 0.9596,
+    "XGBoost": 0.9592
+  },
+  "top_shap_features": [
+    "queue_length_estimate",
+    "occ_x_triage",
+    "ambulance_handover_delay_min",
+    "los_over_threshold",
+    "bed_occupancy_pct",
+    "wait_time_to_assessment_min",
+    "boarding_delay_min",
+    "ed_los_min",
+    "staff_ratio",
+    "triage_category"
+  ],
+  "dissertation": "MSc Big Data & Data Science Technology | Northumbria University London | 2024-25"
+}
